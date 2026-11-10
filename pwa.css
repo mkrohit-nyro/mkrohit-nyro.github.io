@@ -1,0 +1,78 @@
+/* NYRO web app: hides what only the Windows app can do, and fits the layout to phones. Loaded after styles.css. */
+
+/* ───── desktop-only things ───── */
+[data-platform="web"] #updateBar,
+[data-platform="web"] #importBtn,
+[data-platform="web"] #metaPerm,
+[data-platform="web"] #metaDisconnect,
+[data-platform="web"] .nav-item[data-view="activity"],
+[data-platform="web"] .nav-item[data-view="feedback"],
+[data-platform="web"] .photo figcaption [data-folder="1"],
+[data-platform="web"] label.setting:has(#setWake),
+[data-platform="web"] label.setting:has(#setF8),
+[data-platform="web"] label.setting:has(#setAutostart),
+[data-platform="web"] label.setting:has(#setStt),
+[data-platform="web"] label.setting:has(#setSens),
+[data-platform="web"] .card:has(#setProvider),
+[data-platform="web"] .card:has(#gmailStatus),
+[data-platform="web"] #vHint { display: none !important; }
+
+[data-platform="web"] body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; }
+[data-platform="web"] #app, [data-platform="web"] #login, [data-platform="web"] #voice {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); }
+[data-platform="web"] .composer-wrap { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+[data-platform="web"] #sidebar { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+.install-tip { display: flex; gap: 10px; align-items: flex-start; margin: 10px auto 0; max-width: 560px; padding: 10px 14px; border-radius: 12px;
+  background: rgba(34,227,139,.08); border: 1px solid rgba(34,227,139,.25); font-size: 13.5px; line-height: 1.45; color: #cfe9dd; text-align: left; }
+.install-tip b { color: var(--text); }
+.install-tip button { margin-left: auto; border: 0; background: transparent; color: var(--muted); font-size: 18px; line-height: 1; cursor: pointer; padding: 0 2px; }
+[data-theme="light"] .install-tip { color: #20513b; }
+.web-note { margin: 4px 0 0; }
+#sbScrim { display: none; }
+
+/* ───── phones and small tablets ───── */
+@media (max-width: 760px) {
+  [data-platform="web"] body { font-size: 15px; }
+  [data-platform="web"] input, [data-platform="web"] textarea, [data-platform="web"] select { font-size: 16px !important; }   /* stops iPhone zooming in */
+  [data-platform="web"] #sidebar { position: fixed; z-index: 55; top: 0; bottom: 0; left: 0; width: min(84vw, 320px);
+    padding-top: calc(12px + env(safe-area-inset-top)); transform: translateX(0); transition: transform .25s ease;
+    box-shadow: 8px 0 40px rgba(0,0,0,.45); margin-left: 0 !important; opacity: 1 !important; }
+  [data-platform="web"] #app.sb-closed #sidebar { transform: translateX(-105%); pointer-events: none; box-shadow: none; }
+  [data-platform="web"] #sbScrim { display: block; position: fixed; inset: 0; z-index: 54; background: rgba(2,6,15,.55); }
+  [data-platform="web"] #app.sb-closed #sbScrim { display: none; }
+  [data-platform="web"] .nav-item { padding: 11px 12px; }
+  [data-platform="web"] .chat-item { padding: 11px 12px; font-size: 14.5px; }
+  [data-platform="web"] .chat-item .dots { opacity: 1; }
+  [data-platform="web"] .topbar { padding: 8px 10px; height: 52px; gap: 6px; }
+  [data-platform="web"] .chat-title { display: none; }
+  [data-platform="web"] .status-pill { padding: 5px 10px 5px 9px; font-size: 12.5px; }
+  [data-platform="web"] .top-btn { padding: 6px 10px; font-size: 12.5px; }
+  [data-platform="web"] .composer-wrap { padding-left: 10px; padding-right: 10px; }
+  [data-platform="web"] .chips { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; padding-bottom: 2px; }
+  [data-platform="web"] .chips::-webkit-scrollbar { display: none; }
+  [data-platform="web"] .chip { flex-shrink: 0; }
+  [data-platform="web"] .photo-bar { flex-wrap: wrap; }
+  [data-platform="web"] .msg { padding-left: 10px !important; padding-right: 10px !important; }
+  [data-platform="web"] .msg.user .bubble { max-width: 86%; }
+  [data-platform="web"] .msg { gap: 8px; }
+  [data-platform="web"] .welcome h2 { font-size: 22px; }
+  [data-platform="web"] .page { padding: 14px 14px max(20px, env(safe-area-inset-bottom)) !important; overflow-y: auto; }
+  [data-platform="web"] .page-head h2 { font-size: 20px; }
+  [data-platform="web"] .cards { grid-template-columns: 1fr !important; }
+  [data-platform="web"] .rem-form { grid-template-columns: 1fr !important; }
+  [data-platform="web"] .todo-add { flex-wrap: wrap; }
+  [data-platform="web"] .todo-add #todoText { flex: 1 1 100%; }
+  [data-platform="web"] .compare .cmp-row { grid-template-columns: 1.3fr 1fr 1fr; font-size: 13px; }
+  [data-platform="web"] .login-card { width: calc(100vw - 32px); max-width: 420px; padding: 26px 20px; }
+  [data-platform="web"] #alarms { left: 12px; right: 12px; width: auto; bottom: max(12px, env(safe-area-inset-bottom)); }
+  [data-platform="web"] #toast { bottom: calc(96px + env(safe-area-inset-bottom)); max-width: calc(100vw - 32px); text-align: center; }
+  [data-platform="web"] .menu-pop { left: auto !important; right: 12px; }
+  [data-platform="web"] .modal-box { margin: 0 12px; }
+  [data-platform="web"] .setting { gap: 12px; }
+  [data-platform="web"] .v-captions { padding: 0 18px; }
+  [data-platform="web"] .v-bottom { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  [data-platform="web"] .plans { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 760px) and (hover: none) {
+  [data-platform="web"] .chat-item .dots { opacity: .7; }
+}
